@@ -13,12 +13,9 @@
 const char* ssid = "GAYANGA";
 const char* password = "Gayangaa";
 
-// Use @myidbot to find out the chat ID of an individual or a group
-// Also note that you need to click "start" on a bot before it can
-// message you
 String chatId = "5157665426";
 
-// Initialize Telegram BOT
+//  Telegram BOT
 String BOTtoken = "6866460866:AAE_-QwQOXLMQngdnFiLWK4fbY3RsHnmIOY";
 
 bool sendPhoto = false;
@@ -58,13 +55,13 @@ bool motionDetected = false;
 
 BME280 bme;
  
-int botRequestDelay = 1000;   // mean time between scan messages
-long lastTimeBotRan;     // last time messages' scan has been done
+int botRequestDelay = 1000;  
+long lastTimeBotRan;    
 
 void handleNewMessages(int numNewMessages);
 String sendPhotoTelegram();
 
-// Get BME280 sensor readings and return them as a String variable
+
 String getReadings(){
   float temperature, humidity;
   temperature = bme.readTempC();
@@ -105,7 +102,7 @@ void setup(){
   Serial.print("Connecting to ");
   Serial.println(ssid);
   WiFi.begin(ssid, password);
-  clientTCP.setCACert(TELEGRAM_CERTIFICATE_ROOT); // Add root certificate for api.telegram.org
+  clientTCP.setCACert(TELEGRAM_CERTIFICATE_ROOT); 
   while (WiFi.status() != WL_CONNECTED) {
     Serial.print(".");
     delay(500);
@@ -136,14 +133,14 @@ void setup(){
   config.xclk_freq_hz = 20000000;
   config.pixel_format = PIXFORMAT_JPEG;
 
-  //init with high specs to pre-allocate larger buffers
+ 
   if(psramFound()){
     config.frame_size = FRAMESIZE_UXGA;
-    config.jpeg_quality = 10;  //0-63 lower number means higher quality
+    config.jpeg_quality = 10;  
     config.fb_count = 2;
   } else {
     config.frame_size = FRAMESIZE_SVGA;
-    config.jpeg_quality = 12;  //0-63 lower number means higher quality
+    config.jpeg_quality = 12; 
     config.fb_count = 1;
   }
   
@@ -157,10 +154,9 @@ void setup(){
 
   // Drop down frame size for higher initial frame rate
   sensor_t * s = esp_camera_sensor_get();
-  s->set_framesize(s, FRAMESIZE_CIF);  // UXGA|SXGA|XGA|SVGA|VGA|CIF|QVGA|HQVGA|QQVGA
+  s->set_framesize(s, FRAMESIZE_CIF);  
 
-  // PIR Motion Sensor mode INPUT_PULLUP
-  //err = gpio_install_isr_service(0); 
+  
   err = gpio_isr_handler_add(GPIO_NUM_13, &detectsMovement, (void *) 13);  
   if (err != ESP_OK){
     Serial.printf("handler add failed with error 0x%x \r\n", err); 
