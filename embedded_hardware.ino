@@ -1,22 +1,14 @@
-/*********
-  Rui Santos
-  Complete instructions at https://RandomNerdTutorials.com/esp32-cam-projects-ebook/
-  
-  Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files.
-  The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*********/
-
 #include "esp_camera.h"
 #include <WiFi.h>
 #include "esp_timer.h"
 #include "img_converters.h"
 #include "Arduino.h"
 #include "fb_gfx.h"
-#include "soc/soc.h"             // disable brownout problems
-#include "soc/rtc_cntl_reg.h"    // disable brownout problems
+#include "soc/soc.h"            
+#include "soc/rtc_cntl_reg.h"    
 #include "esp_http_server.h"
 
-// Replace with your network credentials
+//my networks
 const char* ssid = "GAYANGA";
 const char* password = "Gayangaa";
 
